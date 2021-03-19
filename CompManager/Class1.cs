@@ -56,30 +56,26 @@ namespace GameManager
                         GUI.color = col;
                         if (GUI.Button(new Rect(370 , 20 + (i * 30), 40, 20), "Tag"))
                         {
-                            foreach (var ply in PhotonNetwork.PlayerList)
-                            {
+                            
                                 PhotonView.Get(GorillaTagManager.instance.GetComponent<GorillaGameManager>()).RPC("ReportTagRPC", RpcTarget.MasterClient, new object[]
                                 {
-                                        ply,
                                         player2
                                 });
-                            }
+                            
                         }
 
                         i++;
                     }
                     if(GUI.Button(new Rect(200, (i - 1)*30 + 50 , 160, 20 ), "Reset Round")){
-                        foreach (var ply1 in PhotonNetwork.PlayerList)
-                        {
-                            foreach (var ply2 in PhotonNetwork.PlayerList)
+                        
+                            foreach (var ply in PhotonNetwork.PlayerList)
                             {
                                 PhotonView.Get(GorillaTagManager.instance.GetComponent<GorillaGameManager>()).RPC("ReportTagRPC", RpcTarget.MasterClient, new object[]
                                 {
-                                            ply1,
-                                            ply2
+                                            ply
                                 });
                             }
-                        }
+                        
                     }
                 }
                 else
